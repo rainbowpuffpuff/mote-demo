@@ -50,11 +50,21 @@ export function ListingDetail() {
           <div className="text-sm font-medium text-gray-900 mb-0.5">{listing.seller}</div>
           <div className="text-[13px] text-gray-500 font-mono">Member since 2026</div>
         </div>
-        <div className="text-right flex items-center gap-4">
-          <div className="text-3xl font-serif text-gray-900 relative group cursor-help">
-            ${listing.price}
+        <div className="text-right flex items-center gap-6">
+          <div className="relative group cursor-help text-right">
+            <div className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-1">AI Estimate</div>
+            <div className="text-2xl font-serif text-gray-400 line-through decoration-gray-300">
+              ${listing.aiPrice || 24}
+            </div>
             <div className="absolute hidden group-hover:block bottom-full right-0 mb-2 w-56 p-3 bg-gray-900 text-white text-[11px] uppercase tracking-wider rounded-md shadow-xl z-10 text-center">
-              Price estimated by local model
+              Intrinsic value estimated by local model
+            </div>
+          </div>
+          <div className="w-px h-8 bg-gray-200"></div>
+          <div className="text-right">
+            <div className="text-[11px] font-semibold text-amber-600 uppercase tracking-widest mb-1">Asking Price</div>
+            <div className="text-3xl font-serif text-gray-900">
+              ${listing.price}
             </div>
           </div>
         </div>

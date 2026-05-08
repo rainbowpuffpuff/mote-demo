@@ -26,9 +26,9 @@ export function FragmentPublish() {
   if (!fragment) return <div className="p-8">Fragment not found.</div>;
 
   const mockDescriptions = [
-    { tone: 'Analytical', text: `Detailed analysis on ${fragment.title || 'this topic'} detailing capital efficiency paths and risk mitigation.` },
-    { tone: 'Punchy', text: `The exact delta and slippage optimizations for ${fragment.title || 'this strategy'}. Step-by-step.` },
-    { tone: 'Narrative', text: `How I discovered the hidden yield vectors in ${fragment.title || 'this method'} and optimized my position.` }
+    { tone: 'Objective', text: `An analysis of capital efficiency within specific liquidity pools, focusing on slippage reduction during epoch transitions.` },
+    { tone: 'Structural', text: `A step-by-step breakdown of a nested position strategy, including entry criteria and measured delta exposure.` },
+    { tone: 'Empirical', text: `Observations on yield vector performance using the ${fragment.title || 'documented method'} over a defined testing period.` }
   ];
 
   const handlePublish = () => {
@@ -44,6 +44,7 @@ export function FragmentPublish() {
         title: fragment.title,
         description: mockDescriptions[selectedDesc].text,
         price: Number(customPrice) || 24,
+        aiPrice: 24, // Assuming the AI generated price is statically 24 for this demo
         seller: '0xSash...4a',
         createdAt: new Date().toISOString(),
       });
@@ -109,7 +110,7 @@ export function FragmentPublish() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Listing Price (USDC)</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Seller Asking Price (USDC)</label>
                 <div className="relative">
                   <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 font-medium">$</span>
                   <input 
@@ -119,7 +120,10 @@ export function FragmentPublish() {
                     className="w-full pl-8 pr-4 py-3 bg-white border border-gray-200 rounded-lg text-xl font-medium focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all shadow-sm"
                   />
                 </div>
-                <p className="text-[11px] text-gray-500 mt-2 uppercase tracking-wide">Gemini estimates $24 based on specific insights.</p>
+                <p className="text-[11px] text-gray-500 mt-3 uppercase tracking-wide leading-relaxed">
+                  Gemini estimates the intrinsic value at <span className="font-semibold text-gray-900">$24</span> based on contained insights.<br/>
+                  <span className="text-amber-600/90">Both the AI estimate and your asking price will be displayed to buyers.</span>
+                </p>
               </div>
             </div>
 
