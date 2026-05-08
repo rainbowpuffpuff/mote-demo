@@ -34,21 +34,27 @@ export function ListingDetail() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto py-8">
-      <div className="mb-4">
-        <span className="text-xs bg-gray-100 px-2 py-1 rounded text-gray-600">{listing.category}</span>
+    <div className="max-w-3xl mx-auto py-12 px-4 sm:px-6">
+      <div className="mb-8">
+        <span className="text-[11px] font-semibold uppercase tracking-widest text-amber-900 bg-amber-100/50 px-3 py-1.5 rounded-full border border-amber-200/50">
+          {listing.category}
+        </span>
       </div>
-      <h1 className="text-3xl font-serif leading-relaxed mb-6">{listing.description}</h1>
-      <div className="flex justify-between items-center border-y py-4 mb-8">
+      
+      <h1 className="text-4xl sm:text-5xl font-serif text-gray-900 leading-[1.3] text-pretty mb-12">
+        "{listing.description}"
+      </h1>
+      
+      <div className="flex justify-between items-center py-6 border-y border-gray-200/80 mb-10">
         <div>
-          <div className="text-sm font-medium">{listing.seller}</div>
-          <div className="text-xs text-gray-500">Member since early 2026</div>
+          <div className="text-sm font-medium text-gray-900 mb-0.5">{listing.seller}</div>
+          <div className="text-[13px] text-gray-500 font-mono">Member since 2026</div>
         </div>
-        <div className="text-right">
-          <div className="text-2xl font-serif relative group cursor-help">
+        <div className="text-right flex items-center gap-4">
+          <div className="text-3xl font-serif text-gray-900 relative group cursor-help">
             ${listing.price}
-            <div className="absolute hidden group-hover:block bottom-full right-0 mb-2 w-48 p-2 bg-gray-900 text-white text-xs rounded">
-              Estimated by seller's local model
+            <div className="absolute hidden group-hover:block bottom-full right-0 mb-2 w-56 p-3 bg-gray-900 text-white text-[11px] uppercase tracking-wider rounded-md shadow-xl z-10 text-center">
+              Price estimated by local model
             </div>
           </div>
         </div>
@@ -56,17 +62,17 @@ export function ListingDetail() {
 
       <button
         onClick={handleBuy}
-        className="w-full py-4 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 transition-colors"
+        className="w-full py-4 bg-gray-900 hover:bg-gray-800 text-white rounded-xl font-medium tracking-wide transition-all shadow-md hover:shadow-lg active:scale-[0.98]"
       >
-        Buy for ${listing.price}
+        Buy & Decrypt (${listing.price})
       </button>
 
-      <div className="mt-12 text-sm text-gray-500 border border-gray-200 rounded-lg p-4">
-        <h4 className="font-medium text-gray-700 mb-2">How this works</h4>
-        <ul className="list-disc list-inside space-y-1">
-          <li>Content is encrypted and stored on Swarm.</li>
-          <li>Your payment releases the decryption key.</li>
-          <li>Mote decrypts the content locally in your browser.</li>
+      <div className="mt-16 text-[13px] leading-relaxed text-gray-500 bg-gray-50/50 border border-gray-200/50 rounded-xl p-6">
+        <h4 className="font-semibold text-gray-900 mb-3 uppercase tracking-wider text-[11px]">How trust is established</h4>
+        <ul className="space-y-2">
+          <li className="flex gap-3"><span className="text-amber-500/70">1.</span> Content is encrypted locally and replicated to Swarm.</li>
+          <li className="flex gap-3"><span className="text-amber-500/70">2.</span> A local LLM generated the description above without leaking cleartext.</li>
+          <li className="flex gap-3"><span className="text-amber-500/70">3.</span> Your payment releases the escrowed decryption key instantly.</li>
         </ul>
       </div>
 

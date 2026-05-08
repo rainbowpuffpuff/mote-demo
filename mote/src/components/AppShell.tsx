@@ -86,16 +86,16 @@ export function AppShell() {
         )}
       </div>
 
-      <nav className="w-64 border-r border-gray-200 p-6 pt-20 flex flex-col gap-8 bg-gray-50/50">
-        <h1 className="font-serif text-3xl font-medium tracking-tight">Mote</h1>
-        <div className="flex flex-col gap-2">
+      <nav className="w-64 border-r border-gray-200 p-8 pt-24 flex flex-col gap-10 bg-white shadow-[1px_0_10px_rgba(0,0,0,0.02)] z-0">
+        <h1 className="font-serif text-4xl text-gray-900 tracking-tight">Mote<span className="text-amber-500">.</span></h1>
+        <div className="flex flex-col gap-1">
           {navItems.map((item) => (
             <NavLink
               key={item.path}
               to={item.path}
               className={({ isActive }) =>
-                `px-4 py-2.5 rounded-md transition-colors text-sm ${
-                  isActive ? 'bg-white border shadow-sm font-medium' : 'text-gray-600 hover:bg-gray-100'
+                `px-4 py-2.5 rounded-lg transition-all duration-200 text-[13px] tracking-wide uppercase font-medium ${
+                  isActive ? 'bg-gray-900 text-white shadow-md' : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'
                 }`
               }
             >
@@ -105,7 +105,7 @@ export function AppShell() {
         </div>
       </nav>
       
-      <main className="flex-1 pt-24 px-12 pb-12">
+      <main className="flex-1 pt-28 px-16 pb-16 overflow-y-auto bg-gray-50/30">
         <Outlet />
       </main>
     </div>

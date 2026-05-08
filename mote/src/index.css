@@ -1,3 +1,36 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, serif;
+}
+
+@layer base {
+  body {
+    @apply text-gray-800 antialiased font-sans bg-gray-50/30;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-gray-900 tracking-tight;
+  }
+  
+  /* Adding a subtle smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Document-like typography utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  
+  /* Elevating cards and boundaries */
+  .card-border {
+    @apply border border-gray-200/80 shadow-sm shadow-gray-100/50 hover:border-gray-300 hover:shadow-md hover:shadow-gray-100/50 transition-all duration-300;
+  }
+}
