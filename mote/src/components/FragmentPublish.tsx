@@ -27,10 +27,20 @@ export function FragmentPublish() {
 
   const wordCount = fragment.content.split(/\s+/).filter(Boolean).length;
 
+  const extractTopic = (text: string) => {
+    const words = text.toLowerCase().replace(/[^a-z0-9\s]/g, '').split(/\s+/);
+    const stopWords = new Set(['the', 'and', 'to', 'of', 'in', 'is', 'that', 'it', 'on', 'you', 'this', 'for', 'but', 'with', 'are', 'have', 'from', 'these', 'those', 'then', 'very', 'which', 'their', 'there']);
+    const meaningfulWords = words.filter(w => w.length > 4 && !stopWords.has(w));
+    if (meaningfulWords.length === 0) return 'specific operational methods';
+    return meaningfulWords.slice(0, 3).join(' ');
+  };
+
+  const topicPhrase = extractTopic(fragment.content);
+
   const mockDescriptions = [
-    { tone: 'Objective', text: `A ${wordCount}-word text outlining a specific procedure related to ${fragment.title || 'the stated topic'}.` },
-    { tone: 'Structural', text: `An informal set of instructions detailing environmental requirements and expected outcomes for ${fragment.title || 'this task'}.` },
-    { tone: 'Empirical', text: `A direct user claim regarding a specific configuration path and its resulting metrics.` }
+    { tone: 'Objective', text: `A ${wordCount}-word text outlining procedures related to ${topicPhrase}.` },
+    { tone: 'Structural', text: `An informal set of notes detailing requirements and expected outcomes for ${topicPhrase}.` },
+    { tone: 'Empirical', text: `A user claim regarding a specific configuration path involving ${topicPhrase}.` }
   ];
 
   const handlePublish = () => {
