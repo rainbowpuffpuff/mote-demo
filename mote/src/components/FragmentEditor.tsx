@@ -86,14 +86,14 @@ export function FragmentEditor() {
           <div className="flex gap-4">
             <button
               onClick={handleSaveDraft}
-              disabled={content.length < 50}
+              disabled={content.length < 10}
               className="flex-1 py-4 bg-white text-gray-900 border border-gray-300 rounded-xl font-medium tracking-wide shadow-sm hover:bg-gray-50 transition-all active:scale-[0.99]"
             >
               Save Draft
             </button>
             <button
               onClick={handlePost}
-              disabled={content.length < 200}
+              disabled={content.length < 10}
               className="flex-1 py-4 bg-gray-900 text-white rounded-xl font-medium tracking-wide shadow-md disabled:bg-gray-200 disabled:text-gray-400 disabled:shadow-none hover:bg-gray-800 transition-all active:scale-[0.99] flex items-center justify-center gap-2"
             >
               Post to Market
