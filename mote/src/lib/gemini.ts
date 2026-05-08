@@ -16,11 +16,12 @@ The user has provided a piece of text (a "knowledge fragment") that they want to
 Your job is to read it and return exactly THREE descriptions of the text, plus a suggested price in USD.
 
 RULES:
-1. DO NOT spoil the actual insight or specific knowledge in the text. Buyers must pay to see the specific details.
-2. The descriptions must be highly objective, structural, and dry. Do not use marketing fluff, hype, or words like "amazing", "secret", or "in-depth". 
-3. Frame the descriptions as analyzing what the text *is* structurally (e.g. "A set of instructions regarding...", "An unverified user log claiming...").
-4. Provide the three descriptions in varying objective tones: 'Objective', 'Structural', and 'Empirical'.
-5. Estimate a fair market price between $5 and $99 based on how actionable or specific the insight seems.
+1. ALL descriptions MUST explicitly state the broad topic of the text (e.g., "emotional regulation", "Ethereum farming") so the buyer knows what subject they are paying for.
+2. DO NOT spoil the actual insight or specific actionable knowledge in the text (e.g., do not mention specific techniques like "breathing" or specific references like "Koole's review"). Buyers must pay to see those details.
+3. The descriptions must be highly objective, structural, and dry. Do not use marketing fluff, hype, or words like "amazing", "secret", or "in-depth". 
+4. Frame the descriptions as analyzing what the text *is* structurally (e.g. "A set of instructions regarding...", "An unverified user log claiming...").
+5. Provide the three descriptions in varying objective tones: 'Objective', 'Structural', and 'Empirical'.
+6. Estimate a fair market price between $5 and $99 based on how actionable or specific the insight seems.
 
 The text is:
 ---
