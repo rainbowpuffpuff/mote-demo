@@ -26,9 +26,9 @@ export function FragmentPublish() {
   if (!fragment) return <div className="p-8">Fragment not found.</div>;
 
   const mockDescriptions = [
-    { tone: 'Objective', text: `An analysis of capital efficiency within specific liquidity pools, focusing on slippage reduction during epoch transitions.` },
-    { tone: 'Structural', text: `A step-by-step breakdown of a nested position strategy, including entry criteria and measured delta exposure.` },
-    { tone: 'Empirical', text: `Observations on yield vector performance using the ${fragment.title || 'documented method'} over a defined testing period.` }
+    { tone: 'Objective', text: `An unverified user report claiming success with ${fragment.title || 'a specific farming strategy'}. Contains configuration details.` },
+    { tone: 'Structural', text: `CLI commands and parameters for interacting with ${fragment.title || 'the terminal'}. Claims to achieve specific yield metrics.` },
+    { tone: 'Empirical', text: `A brief log of a user executing a yield strategy on ${fragment.title || 'the mentioned network'}, including stated outcomes.` }
   ];
 
   const handlePublish = () => {

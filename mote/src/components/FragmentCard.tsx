@@ -17,7 +17,7 @@ export function FragmentCard({ fragment }: { fragment: Fragment }) {
         {getStatusPill()}
       </div>
       <p className="font-serif text-gray-600 italic mb-6 flex items-start gap-2 leading-relaxed text-pretty">
-        <Lock className="w-3.5 h-3.5 mt-1 shrink-0 opacity-50" />
+        {fragment.status !== 'Draft' && <Lock className="w-3.5 h-3.5 mt-1 shrink-0 opacity-50" />}
         {fragment.content.slice(0, 80)}...
       </p>
       <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
