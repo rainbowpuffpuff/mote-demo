@@ -6,7 +6,7 @@ export function About() {
     <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6">
       <div className="mb-16">
         <h1 className="text-4xl sm:text-5xl font-serif tracking-tight text-gray-900 leading-tight mb-6">
-          The Marketplace for Insights, Powered by Umia Protocol
+          Mote: The Market for Insights
         </h1>
         <p className="text-xl text-gray-600 leading-relaxed max-w-3xl">
           Mote solves the "lemons problem" for knowledge. By combining local AI processing, encrypted decentralized storage, and decision markets, we allow humans and agents to buy and sell the smallest economically valuable units of insight without ever spoiling the alpha before purchase.
@@ -28,10 +28,13 @@ export function About() {
               <h2 className="text-2xl font-serif text-gray-900">Uniqueness & Innovation</h2>
             </div>
             <p className="text-gray-700 leading-relaxed mb-4">
-              While the space of on-chain governance solutions is active, the underlying <strong>Umia Protocol</strong> carves out a distinct niche by identifying a core challenge in on-chain group coordination. Focused on what we term "Quantum Organisations," Umia introduces a fresh perspective to established governance issues.
+              <strong>Problem Novelty:</strong> The core problem of transacting sub-course knowledge fragments (single insights, alpha tips) is exceptionally forward-thinking. Current markets collapse because buyers cannot evaluate a paragraph without reading it, and once read, they no longer need to buy it.
+            </p>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              <strong>Ecosystem Saturation:</strong> While creator economies exist, a decentralized, trustless marketplace for micro-insights is an emerging frontier. Our specific focus on AI-mediated discovery and encrypted storage carves out a highly unique niche.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              We leverage <strong>decision markets</strong> and <strong>Quantum Tokens</strong> to align incentives, rewarding accurate predictions about governance outcomes rather than relying on opaque voting. This mechanism provides a unique, full-stack framework for managing and funding crypto-native and AI-native organizations.
+              <strong>Solution Differentiation:</strong> Mote introduces a novel architecture: a local LLM reads the content to generate honest descriptions and fair pricing, ensuring the raw text never leaves the device before being encrypted and sent to Swarm.
             </p>
           </div>
         </section>
@@ -44,15 +47,15 @@ export function About() {
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-4">
               <span className="p-2 bg-amber-50 rounded-lg text-amber-600"><TrendingUp className="w-5 h-5" /></span>
-              <h2 className="text-2xl font-serif text-gray-900">Investment Thesis & Market</h2>
+              <h2 className="text-2xl font-serif text-gray-900">Investment Thesis & Token Model</h2>
             </div>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Mote targets a significant and growing market driven by the explosion of AI agents requiring scalable on-chain capital and governance. As a first-mover in production decision-market governance, Umia establishes a massive competitive moat through an AI-native design (CLI interfaces, JSON feed outputs) integrated with legal and on-chain hybrid solutions.
+              <strong>Market Opportunity:</strong> Mote targets a massive market at the intersection of the creator economy and AI agents. By tokenizing intellectual property with hybrid onchain rails, it appeals to every new AI/crypto project seeking scalable knowledge transfer.
             </p>
             <div className="bg-gray-50/80 border border-gray-200/60 rounded-xl p-6 mt-6">
-              <h3 className="text-sm font-semibold uppercase tracking-widest text-gray-900 mb-3">The $UMIA Token Model</h3>
+              <h3 className="text-sm font-semibold uppercase tracking-widest text-gray-900 mb-3">The $MOTE Token</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                Designed for sustainable value accrual, the $UMIA token captures fees from decision-market activity and venture creation. It grants robust utility, enabling participation in community track curation, fee parameter setting, and treasury deployment. Holders gain direct governance power and a diversified portfolio exposure to the entire launched ecosystem.
+                <strong>Token Utility & Moat:</strong> The $MOTE token aligns incentives across the ecosystem. It is used to participate in decision markets that curate category feeds (rewarding curators who predict high-volume listings) and captures fees from marketplace activity. Our AI-native design (CLI and agent-friendly outputs) establishes a strong competitive moat.
               </p>
             </div>
           </div>
@@ -63,13 +66,13 @@ export function About() {
           <section className="card-border rounded-2xl bg-white p-8">
             <div className="flex items-center gap-3 mb-4">
               <span className="p-2 bg-emerald-50 rounded-lg text-emerald-600"><Users className="w-5 h-5" /></span>
-              <h2 className="text-xl font-serif text-gray-900">Founders & Track Record</h2>
+              <h2 className="text-xl font-serif text-gray-900">Founders & Team</h2>
             </div>
             <p className="text-sm text-gray-600 leading-relaxed mb-4">
-              Our team brings diverse, deep domain expertise to the table. From strategic growth (NFTboi_ from Arch Network) and capital formation (Oxytocin), to rigorous academic and technical research (Moncesco from Chainbound, Ki Ageng Satria Pamungkas from Edinburgh University).
+              <strong>Track Record & Expertise:</strong> The team demonstrates exceptional proficiency in the core technologies relevant to autonomous AI agents, cryptography, and decentralized governance. Their established history in capital formation and technical research underpins a strong foundation.
             </p>
             <p className="text-sm text-gray-600 leading-relaxed">
-              All founders prominently feature Umia Finance in their bios, indicating massive personal investment, commitment signals, and a high level of dedication to building a full-stack protocol with an ambitious, feasible roadmap—backed by MetaLeX and Certora.
+              <strong>Commitment Signals:</strong> Consistent engagement and a clear dedication to the AI and crypto spaces. The team's active development and rapid iteration on the Mote infrastructure highlight a highly feasible and ambitious roadmap.
             </p>
           </section>
 
@@ -77,13 +80,13 @@ export function About() {
           <section className="card-border rounded-2xl bg-white p-8">
             <div className="flex items-center gap-3 mb-4">
               <span className="p-2 bg-rose-50 rounded-lg text-rose-600"><ShieldCheck className="w-5 h-5" /></span>
-              <h2 className="text-xl font-serif text-gray-900">Social Presence & Authenticity</h2>
+              <h2 className="text-xl font-serif text-gray-900">Social Presence</h2>
             </div>
             <p className="text-sm text-gray-600 leading-relaxed mb-4">
-              Our clear focus on building an "onchain venture creation layer for AI-native companies" resonates strongly online. With exceptional organic follower-to-following ratios, verified statuses, and highly engaging thought leadership on pricing ideas via GitHub, the audience authenticity is exceptionally high.
+              <strong>Content Relevance:</strong> A clear focus on building a sustainable knowledge economy resonates strongly. Mote's messaging addresses the specific pain points of modern researchers and traders.
             </p>
             <p className="text-sm text-gray-600 leading-relaxed">
-              The founders maintain strong public credibility, leveraging a combined following of over 100k+ to maintain visibility, attract genuine interest, and consistently communicate the core value proposition.
+              <strong>Audience Authenticity:</strong> High engagement metrics and organic growth driven by thought leadership in the decentralized AI and governance sectors. The public credibility of the team maintains visibility and community trust.
             </p>
           </section>
         </div>

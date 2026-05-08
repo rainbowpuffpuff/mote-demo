@@ -6,6 +6,7 @@ import { Vault } from './components/Vault';
 import { FragmentEditor } from './components/FragmentEditor';
 import { FragmentPublish } from './components/FragmentPublish';
 import { Market } from './components/Market';
+import { CategoryPage } from './components/CategoryPage';
 import { DecisionMarket } from './components/DecisionMarket';
 import { ListingDetail } from './components/ListingDetail';
 import { Library } from './components/Library';
@@ -26,7 +27,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="vault/edit/:id" element={<FragmentEditor />} />
           <Route path="vault/publish/:id" element={<FragmentPublish />} />
           <Route path="market" element={<Market />} />
-          <Route path="market/:category" element={<div>Category Page</div>} />
+          <Route path="market/:category" element={<CategoryPage />} />
           <Route path="market/listing/:id" element={<ListingDetail />} />
           <Route path="library" element={<Library />} />
           <Route path="library/:id" element={<LibraryDetail />} />
@@ -35,7 +36,6 @@ createRoot(document.getElementById('root')!).render(
           <Route path="agent" element={<AgentFeed />} />
         </Route>
       </Routes>
-
     </BrowserRouter>
   </StrictMode>
 );
