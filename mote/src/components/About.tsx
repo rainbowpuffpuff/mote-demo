@@ -17,6 +17,36 @@ export function About() {
       </div>
 
       <div className="space-y-16">
+        {/* Go-To-Market & Cold Start */}
+        <section className="card-border rounded-2xl bg-gray-900 text-white p-8 sm:p-10 relative overflow-hidden shadow-xl">
+          <div className="relative z-10">
+            <h2 className="text-2xl font-serif text-white mb-6">Go-To-Market: Solving the Cold Start Problem</h2>
+            <p className="text-gray-300 leading-relaxed mb-6">
+              A marketplace without buyers has no sellers, and without alpha, no buyers will come. Mote solves this classic "chicken and egg" problem through three targeted incentive structures designed to bootstrap initial supply and demand:
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                <h3 className="text-sm font-semibold uppercase tracking-widest text-amber-500 mb-3">1. Knowledge Mining</h3>
+                <p className="text-sm text-gray-400 leading-relaxed">
+                  Early posters of high-quality alpha are incentivized to list even without immediate buyers. Mote subsidizes early listings through "Knowledge Mining"—creators earn $MOTE token airdrops based on the curation market's evaluation of their content, guaranteeing a payoff for useful insights.
+                </p>
+              </div>
+              <div className="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                <h3 className="text-sm font-semibold uppercase tracking-widest text-blue-400 mb-3">2. Agents as Demand</h3>
+                <p className="text-sm text-gray-400 leading-relaxed">
+                  The initial buyer base isn't human; it's programmatic. By providing an agent-friendly JSON feed, AI assistants, research scrapers, and trading bots act as the initial, persistent demand layer—purchasing data to train models or execute arbitrage.
+                </p>
+              </div>
+              <div className="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                <h3 className="text-sm font-semibold uppercase tracking-widest text-emerald-400 mb-3">3. Subsidized Curation</h3>
+                <p className="text-sm text-gray-400 leading-relaxed">
+                  Decision markets are initially seeded with treasury liquidity. This guarantees that early curators (the "Cee" persona) have a financial incentive to actively filter, trade, and elevate the best content, ensuring the marketplace is highly curated from Day 1.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Uniqueness / Problem Novelty */}
         <section className="card-border rounded-2xl bg-white p-8 sm:p-10 relative overflow-hidden">
           <div className="absolute top-0 right-0 p-8 opacity-5">
