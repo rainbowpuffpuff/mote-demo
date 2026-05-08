@@ -6,6 +6,7 @@ export function Library() {
   const purchasedListingsIds = useStore((state) => state.purchasedListings);
   const listings = useStore((state) => state.listings);
   const fragments = useStore((state) => state.fragments);
+  const activePersona = useStore((state) => state.activePersona);
   
   const purchasedListings = purchasedListingsIds.map(id => listings.find(l => l.id === id)).filter(Boolean);
   const authoredFragments = fragments;
@@ -15,7 +16,7 @@ export function Library() {
   if (!hasContent) {
     return (
       <div className="max-w-4xl mx-auto text-center py-24">
-        <h1 className="text-2xl font-serif mb-4">Your Library</h1>
+        <h1 className="text-2xl font-serif mb-4">{activePersona}'s Library</h1>
         <p className="text-gray-500">You don't have any knowledge fragments yet.</p>
         <Link to="/market" className="inline-block mt-6 px-6 py-2 bg-gray-900 text-white rounded hover:bg-gray-800">
           Browse Marketplace
@@ -27,7 +28,7 @@ export function Library() {
   return (
     <div className="max-w-4xl mx-auto py-8">
       <div className="mb-12">
-        <h1 className="text-4xl font-serif tracking-tight text-gray-900">Library</h1>
+        <h1 className="text-4xl font-serif tracking-tight text-gray-900">{activePersona}'s Library</h1>
         <p className="text-gray-500 mt-2">Your authored and purchased insight fragments.</p>
       </div>
       

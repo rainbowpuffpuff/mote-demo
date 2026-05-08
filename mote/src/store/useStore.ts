@@ -5,6 +5,13 @@ import { listings as initialListings, type Listing } from '../seed/listings';
 
 export type Persona = 'Sasha' | 'Bo' | 'Cee' | 'Ari';
 
+export const PERSONA_DETAILS: Record<Persona, { address: string, balance: number, role: string }> = {
+  Sasha: { address: '0xSash...4a92', balance: 142.50, role: 'Seller' },
+  Bo: { address: '0xBo88...1f33', balance: 850.00, role: 'Buyer' },
+  Cee: { address: '0xCee7...9b21', balance: 3200.00, role: 'Curator' },
+  Ari: { address: '0xAri1...001a', balance: 0.00, role: 'Agent' }
+};
+
 interface MoteState {
   activePersona: Persona;
   fragments: Fragment[];

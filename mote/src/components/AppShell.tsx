@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Outlet, NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { useStore, type Persona } from '../store/useStore';
+import { useStore, PERSONA_DETAILS, type Persona } from '../store/useStore';
+import { Wallet } from 'lucide-react';
 
 const navItems = [
   { label: 'About & Vision', path: '/about' },
@@ -18,6 +19,8 @@ export function AppShell() {
   const location = useLocation();
   const navigate = useNavigate();
   const [showOverlay, setShowOverlay] = useState(true);
+
+  const activeDetails = PERSONA_DETAILS[activePersona];
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -58,18 +61,26 @@ export function AppShell() {
     <div className="flex min-h-screen bg-white text-gray-900 font-sans relative">
       {/* Top Navbar */}
       <div className="absolute top-0 left-64 right-0 h-16 border-b flex items-center justify-between px-8 bg-white z-10">
-        <div className="flex gap-2 bg-gray-100 p-1 rounded-md">
-          {personas.map((p) => (
-            <button
-              key={p}
-              onClick={() => setActivePersona(p)}
-              className={`px-3 py-1 text-sm rounded transition-colors ${
-                activePersona === p ? 'bg-white shadow-sm font-medium' : 'text-gray-500 hover:text-gray-900'
-              }`}
-            >
-              {p}
-            </button>
-          ))}
+        <div className="flex items-center gap-6">
+          <div className="flex gap-2 bg-gray-100 p-1 rounded-md">
+            {personas.map((p) => (
+              <button
+                key={p}
+                onClick={() => setActivePersona(p)}
+                className={`px-3 py-1 text-sm rounded transition-colors ${
+                  activePersona === p ? 'bg-white shadow-sm font-medium' : 'text-gray-500 hover:text-gray-900'
+                }`}
+              >
+                {p}
+              </button>
+            ))}
+          </div>
+          <div className="flex items-center gap-2 text-sm text-gray-600 font-mono bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-200">
+            <Wallet className="w-4 h-4 text-gray-400" />
+            <span>{activeDetails.address}</span>
+            <span className="text-gray-300">|</span>
+            <span className="text-gray-900 font-medium">${activeDetails.balance.toFixed(2)}</span>
+          </div>
         </div>
         
         {showOverlay && (

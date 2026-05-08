@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Sparkles, Check, ChevronRight } from 'lucide-react';
-import { useStore } from '../store/useStore';
+import { useStore, PERSONA_DETAILS } from '../store/useStore';
 import { analyzeFragmentLive } from '../lib/gemini';
 
 export function FragmentPublish() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { fragments, updateFragment, addListing } = useStore();
+  const { fragments, updateFragment, addListing, activePersona } = useStore();
   const fragment = fragments.find((f) => f.id === id);
 
   const [analyzing, setAnalyzing] = useState(true);
@@ -46,7 +46,7 @@ export function FragmentPublish() {
         description: liveDescriptions[selectedDesc]?.text || "Description pending",
         price: Number(customPrice) || aiPrice,
         aiPrice: aiPrice,
-        seller: '0xSash...4a',
+        seller: PERSONA_DETAILS[activePersona].address,
         createdAt: new Date().toISOString(),
       });
       

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Lock, Unlock, Key } from 'lucide-react';
-import { useStore } from '../store/useStore';
+import { useStore, PERSONA_DETAILS } from '../store/useStore';
 
 export function ListingDetail() {
   const { id } = useParams();
@@ -10,6 +10,8 @@ export function ListingDetail() {
   const listings = useStore((state) => state.listings);
   const listing = listings.find((l) => l.id === id);
   const purchaseListing = useStore((state) => state.purchaseListing);
+  const activePersona = useStore((state) => state.activePersona);
+  const activeDetails = PERSONA_DETAILS[activePersona];
 
   const [buyState, setBuyState] = useState<'idle' | 'wallet' | 'confirming' | 'key-release' | 'decrypting'>('idle');
 
@@ -98,18 +100,58 @@ export function ListingDetail() {
               <motion.div
                 initial={{ scale: 0.95 }}
                 animate={{ scale: 1 }}
-                className="bg-white border shadow-xl rounded-xl p-6 w-80"
+                className="bg-white border shadow-xl rounded-2xl p-8 w-96"
               >
-                <h3 className="font-medium mb-4">MetaMask (Mock)</h3>
-                <div className="bg-gray-50 p-3 rounded mb-4 text-sm font-mono break-all text-gray-600">
-                  Buy {listing.id} for ${listing.price}
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="font-semibold text-gray-900">Wallet Signature</h3>
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 bg-blue-50 rounded-full">
+                    <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse" />
+                    <span className="text-[11px] font-bold text-blue-600 uppercase tracking-tight">Mainnet</span>
+                  </div>
                 </div>
-                <button
-                  onClick={handleSign}
-                  className="w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700 font-medium transition-colors"
-                >
-                  Sign & Pay
-                </button>
+                
+                <div className="space-y-4 mb-8">
+                  <div className="p-4 bg-gray-50 rounded-xl border border-gray-100">
+                    <div className="text-[10px] uppercase font-bold text-gray-400 tracking-wider mb-2">Account</div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500" />
+                        <div>
+                          <div className="text-sm font-medium text-gray-900">{activePersona}</div>
+                          <div className="text-[11px] text-gray-500 font-mono">{activeDetails.address}</div>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-xs font-bold text-gray-900">${activeDetails.balance.toFixed(2)}</div>
+                        <div className="text-[10px] text-gray-400">Balance</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-4 bg-amber-50/50 rounded-xl border border-amber-100">
+                    <div className="text-[10px] uppercase font-bold text-amber-600 tracking-wider mb-1">Contract Action</div>
+                    <div className="text-sm font-medium text-amber-900 leading-tight">Purchase Knowledge Fragment: "{listing.title}"</div>
+                    <div className="mt-3 flex justify-between items-end">
+                      <div className="text-[10px] text-amber-600/70 italic">Escrow key-release authorized</div>
+                      <div className="text-lg font-serif font-bold text-gray-900">${listing.price}</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => setBuyState('idle')}
+                    className="flex-1 py-3 px-4 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-xl text-sm font-semibold transition-all"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleSign}
+                    className="flex-[2] py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-semibold shadow-lg shadow-blue-500/20 transition-all active:scale-[0.98]"
+                  >
+                    Confirm & Pay
+                  </button>
+                </div>
               </motion.div>
             )}
 
