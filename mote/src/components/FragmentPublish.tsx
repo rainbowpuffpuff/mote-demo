@@ -25,10 +25,12 @@ export function FragmentPublish() {
 
   if (!fragment) return <div className="p-8">Fragment not found.</div>;
 
+  const wordCount = fragment.content.split(/\s+/).filter(Boolean).length;
+
   const mockDescriptions = [
-    { tone: 'Objective', text: `An unverified user report claiming success with ${fragment.title || 'a specific farming strategy'}. Contains configuration details.` },
-    { tone: 'Structural', text: `CLI commands and parameters for interacting with ${fragment.title || 'the terminal'}. Claims to achieve specific yield metrics.` },
-    { tone: 'Empirical', text: `A brief log of a user executing a yield strategy on ${fragment.title || 'the mentioned network'}, including stated outcomes.` }
+    { tone: 'Objective', text: `A ${wordCount}-word text outlining a specific procedure related to ${fragment.title || 'the stated topic'}.` },
+    { tone: 'Structural', text: `An informal set of instructions detailing environmental requirements and expected outcomes for ${fragment.title || 'this task'}.` },
+    { tone: 'Empirical', text: `A direct user claim regarding a specific configuration path and its resulting metrics.` }
   ];
 
   const handlePublish = () => {
