@@ -6,6 +6,10 @@ import { Vault } from './components/Vault';
 import { VaultNew } from './components/VaultNew';
 import { Market } from './components/Market';
 import { DecisionMarket } from './components/DecisionMarket';
+import { ListingDetail } from './components/ListingDetail';
+import { Library } from './components/Library';
+import { LibraryDetail } from './components/LibraryDetail';
+import { AgentFeed } from './components/AgentFeed';
 import './index.css';
 
 createRoot(document.getElementById('root')!).render(
@@ -18,12 +22,15 @@ createRoot(document.getElementById('root')!).render(
           <Route path="vault/new" element={<VaultNew />} />
           <Route path="market" element={<Market />} />
           <Route path="market/:category" element={<div>Category Page</div>} />
-          <Route path="library" element={<div>Library</div>} />
+          <Route path="market/listing/:id" element={<ListingDetail />} />
+          <Route path="library" element={<Library />} />
+          <Route path="library/:id" element={<LibraryDetail />} />
           <Route path="curate" element={<DecisionMarket />} />
           <Route path="curate/:category" element={<DecisionMarket />} />
-          <Route path="agent" element={<div>Agent Feed</div>} />
+          <Route path="agent" element={<AgentFeed />} />
         </Route>
       </Routes>
+
     </BrowserRouter>
   </StrictMode>
 );
