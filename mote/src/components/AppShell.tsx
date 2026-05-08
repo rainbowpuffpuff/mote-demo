@@ -3,6 +3,7 @@ import { Outlet, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useStore, type Persona } from '../store/useStore';
 
 const navItems = [
+  { label: 'About & Vision', path: '/about' },
   { label: 'Vault', path: '/vault' },
   { label: 'Market', path: '/market' },
   { label: 'Library', path: '/library' },

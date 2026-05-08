@@ -11,6 +11,7 @@ import { ListingDetail } from './components/ListingDetail';
 import { Library } from './components/Library';
 import { LibraryDetail } from './components/LibraryDetail';
 import { AgentFeed } from './components/AgentFeed';
+import { About } from './components/About';
 import './index.css';
 
 createRoot(document.getElementById('root')!).render(
@@ -18,7 +19,8 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AppShell />}>
-          <Route index element={<Navigate to="/vault" replace />} />
+          <Route index element={<Navigate to="/about" replace />} />
+          <Route path="about" element={<About />} />
           <Route path="vault" element={<Vault />} />
           <Route path="vault/new" element={<FragmentEditor />} />
           <Route path="vault/edit/:id" element={<FragmentEditor />} />
