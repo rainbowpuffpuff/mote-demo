@@ -10,6 +10,7 @@ export interface MarketCandidate {
   yesPrice: number; // 0 to 1 scale
   noPrice: number;  // 0 to 1 scale
   volume: number;
+  liquidity: number; // Total USDC pooled
   priceHistory: PricePoint[];
 }
 
@@ -44,6 +45,7 @@ export const activeMarket: Market = {
       yesPrice: 0.65, 
       noPrice: 0.35, 
       volume: 12500,
+      liquidity: 45000,
       priceHistory: generateHistory(0.4)
     },
     { 
@@ -53,6 +55,7 @@ export const activeMarket: Market = {
       yesPrice: 0.38, 
       noPrice: 0.62, 
       volume: 8200,
+      liquidity: 28000,
       priceHistory: generateHistory(0.3)
     },
     { 
@@ -62,6 +65,7 @@ export const activeMarket: Market = {
       yesPrice: 0.12, 
       noPrice: 0.88, 
       volume: 4500,
+      liquidity: 12000,
       priceHistory: generateHistory(0.1)
     },
   ],

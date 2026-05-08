@@ -136,6 +136,8 @@ export function DecisionMarket() {
                   <div className="flex items-center gap-4 text-[13px] font-medium text-gray-500">
                     <span className="flex items-center gap-1"><ArrowUpRight className="w-3 h-3 text-emerald-500" /> ${c.volume.toLocaleString()} Vol</span>
                     <span className="text-gray-300">|</span>
+                    <span className="flex items-center gap-1 text-blue-500">${c.liquidity.toLocaleString()} Liquidity</span>
+                    <span className="text-gray-300">|</span>
                     <span className="text-gray-400">{(c.yesPrice * 100).toFixed(0)}% Probability</span>
                   </div>
                 </div>
@@ -241,6 +243,16 @@ export function DecisionMarket() {
                        <div className="flex justify-between text-xs">
                           <span className="text-gray-400">Potential Payout</span>
                           <span className="font-bold text-emerald-600">${(parseFloat(amount) / (tradeMode === 'YES' ? selectedCandidate.yesPrice : selectedCandidate.noPrice)).toFixed(2)}</span>
+                       </div>
+                       <div className="flex justify-between text-xs border-t border-gray-100 pt-2 mt-2">
+                          <span className="text-gray-400 font-medium">Estimated ROI</span>
+                          <span className="font-bold text-blue-600">
+                             +{(((1 / (tradeMode === 'YES' ? selectedCandidate.yesPrice : selectedCandidate.noPrice)) - 1) * 100).toFixed(0)}%
+                          </span>
+                       </div>
+                       <div className="flex justify-between text-[10px]">
+                          <span className="text-gray-400">Price Impact</span>
+                          <span className="text-gray-500">{(parseFloat(amount) / selectedCandidate.liquidity * 100).toFixed(4)}%</span>
                        </div>
                     </div>
                   </div>
