@@ -3,6 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Sparkles, Check, ChevronRight } from 'lucide-react';
 import { useStore, PERSONA_DETAILS } from '../store/useStore';
 import { analyzeFragmentLive } from '../lib/gemini';
+import { createWalletClient, http, publicActions } from 'viem';
+import { anvil } from 'viem/chains';
+import { SKILLS_REGISTRY_ADDRESS, SKILLS_REGISTRY_ABI } from '../lib/contract';
 
 export function FragmentPublish() {
   const { id } = useParams();
@@ -15,6 +18,7 @@ export function FragmentPublish() {
   const [customPrice, setCustomPrice] = useState<number | string>('');
   const [aiPrice, setAiPrice] = useState<number>(24);
   const [publishing, setPublishing] = useState(false);
+  const [publishStep, setPublishStep] = useState('');
   const [liveDescriptions, setLiveDescriptions] = useState<{tone: string, text: string}[]>([]);
 
   useEffect(() => {
@@ -32,16 +36,46 @@ export function FragmentPublish() {
 
   if (!fragment) return <div className="p-8">Fragment not found.</div>;
 
-  const handlePublish = () => {
+  const handlePublish = async () => {
     setPublishing(true);
-    setTimeout(() => {
-      // Update fragment status
+    
+    try {
+      // 1. Simulate Local Encryption
+      setPublishStep('Encrypting fragment locally...');
+      await new Promise(r => setTimeout(r, 800));
+
+      // 2. Simulate Swarm Upload
+      setPublishStep('Uploading encrypted blob to Swarm...');
+      const swarmHash = '0x' + Array.from({length: 64}, () => Math.floor(Math.random() * 16).toString(16)).join('');
+      await new Promise(r => setTimeout(r, 1200));
+
+      // 3. Actual On-chain Registration (Localnet)
+      setPublishStep('Registering on-chain (Anvil)...');
+      
+      const client = createWalletClient({
+        chain: anvil,
+        transport: http('http://localhost:8545')
+      }).extend(publicActions);
+
+      // Using the first anvil account as a proxy for the persona for the demo
+      const [address] = await client.getAddresses();
+      
+      const priceInWei = BigInt(Number(customPrice) || aiPrice) * BigInt(10**18); // Simple 1:1 for demo
+      
+      await client.writeContract({
+        address: SKILLS_REGISTRY_ADDRESS,
+        abi: SKILLS_REGISTRY_ABI,
+        functionName: 'registerFragment',
+        args: [swarmHash, liveDescriptions[selectedDesc]?.text || '', priceInWei],
+        account: address,
+      });
+
+      // Update local state
       updateFragment(fragment.id, { status: 'Listed', price: Number(customPrice) || aiPrice });
       
-      // Add to marketplace listings
       addListing({
-        id: fragment.id, // For demo, using same ID
-        category: 'Agent skills', // Auto-categorized as Agent skills for this demo flow
+        id: fragment.id,
+        category: 'Agent skills',
         title: fragment.title,
         description: liveDescriptions[selectedDesc]?.text || "Description pending",
         price: Number(customPrice) || aiPrice,
@@ -51,7 +85,11 @@ export function FragmentPublish() {
       });
       
       navigate('/vault');
-    }, 1500);
+    } catch (e) {
+      console.error("Publishing failed:", e);
+      setPublishStep('Error: Check if Anvil is running.');
+      setTimeout(() => setPublishing(false), 2000);
+    }
   };
 
   return (
@@ -131,10 +169,13 @@ export function FragmentPublish() {
             <button
               onClick={handlePublish}
               disabled={publishing}
-              className="w-full py-4 bg-gray-900 text-white rounded-xl font-medium tracking-wide shadow-md disabled:bg-gray-200 disabled:text-gray-400 transition-all active:scale-[0.99] flex items-center justify-center gap-2"
+              className="w-full py-4 bg-gray-900 text-white rounded-xl font-medium tracking-wide shadow-md disabled:bg-gray-200 disabled:text-gray-400 transition-all active:scale-[0.99] flex flex-col items-center justify-center gap-1"
             >
-              {publishing ? 'Encrypting & Posting to Swarm...' : 'Post to Market'}
-              {!publishing && <ChevronRight className="w-4 h-4" />}
+              <div className="flex items-center gap-2">
+                {publishing ? 'Processing...' : 'Post to Market'}
+                {!publishing && <ChevronRight className="w-4 h-4" />}
+              </div>
+              {publishing && <span className="text-[10px] text-gray-400 animate-pulse font-mono uppercase tracking-tighter">{publishStep}</span>}
             </button>
           </div>
         </div>

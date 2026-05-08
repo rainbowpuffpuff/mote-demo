@@ -17,6 +17,28 @@ export function About() {
       </div>
 
       <div className="space-y-16">
+        {/* Technical Architecture */}
+        <section className="card-border rounded-2xl bg-white p-8 sm:p-10">
+          <div className="flex items-center gap-3 mb-8">
+            <ShieldCheck className="w-6 h-6 text-indigo-600" />
+            <h2 className="text-2xl font-serif text-gray-900">Technical Architecture: Swarm + Chain</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-widest text-gray-900 mb-4">Swarm (Large Data)</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Swarm acts as the permanent, decentralized storage for the <strong>encrypted knowledge payloads</strong>. Unlike centralized servers, Swarm ensures the data is content-addressed and immutable. If the marketplace frontend disappears, your purchased insights remain accessible via their Swarm references.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-widest text-gray-900 mb-4">Ethereum (State & Trust)</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                The blockchain manages the <strong>listing registry and access control</strong>. When you "post to market", a Swarm hash is committed to our on-chain registry. Payments trigger trustless escrow releases, ensuring the author is paid automatically before the buyer's local Mote instance decrypts the Swarm blob.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Go-To-Market & Cold Start */}
         <section className="card-border rounded-2xl bg-gray-900 text-white p-8 sm:p-10 relative overflow-hidden shadow-xl">
           <div className="relative z-10">

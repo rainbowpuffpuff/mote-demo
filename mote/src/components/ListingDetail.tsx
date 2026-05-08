@@ -3,6 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Lock, Unlock, Key } from 'lucide-react';
 import { useStore, PERSONA_DETAILS } from '../store/useStore';
+import { createWalletClient, http, publicActions, keccak256, stringToBytes } from 'viem';
+import { anvil } from 'viem/chains';
+import { SKILLS_REGISTRY_ADDRESS, SKILLS_REGISTRY_ABI } from '../lib/contract';
 
 export function ListingDetail() {
   const { id } = useParams();
@@ -21,18 +24,46 @@ export function ListingDetail() {
     setBuyState('wallet');
   };
 
-  const handleSign = () => {
+  const handleSign = async () => {
     setBuyState('confirming');
-    setTimeout(() => {
-      setBuyState('key-release');
+    
+    try {
+      const client = createWalletClient({
+        chain: anvil,
+        transport: http('http://localhost:8545')
+      }).extend(publicActions);
+
+      const [address] = await client.getAddresses();
+      const priceInWei = BigInt(listing.price) * BigInt(10**18);
+
+      // Generate a mock hash for the listing ID for the contract call
+      const bytes32Id = keccak256(stringToBytes(listing.id));
+
+      await client.writeContract({
+        address: SKILLS_REGISTRY_ADDRESS,
+        abi: SKILLS_REGISTRY_ABI,
+        functionName: 'purchaseFragment',
+        args: [bytes32Id],
+        account: address,
+        value: priceInWei
+      });
+
+      // Flow continue
       setTimeout(() => {
-        setBuyState('decrypting');
+        setBuyState('key-release');
         setTimeout(() => {
-          purchaseListing(listing.id);
-          navigate(`/library/${listing.id}`);
-        }, 600); // Decrypting -> Done
-      }, 1200); // Key release -> Decrypting
-    }, 600); // Confirming -> Key release
+          setBuyState('decrypting');
+          setTimeout(() => {
+            purchaseListing(listing.id);
+            navigate(`/library/${listing.id}`);
+          }, 600);
+        }, 1200);
+      }, 600);
+    } catch (e) {
+      console.error("Purchase failed:", e);
+      setBuyState('idle');
+      alert("Purchase failed. Check if Anvil is running.");
+    }
   };
 
   return (
