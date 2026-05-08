@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Lock, Unlock, Key } from 'lucide-react';
-import { listings } from '../seed/listings';
 import { useStore } from '../store/useStore';
 
 export function ListingDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const listings = useStore((state) => state.listings);
   const listing = listings.find((l) => l.id === id);
   const purchaseListing = useStore((state) => state.purchaseListing);
 

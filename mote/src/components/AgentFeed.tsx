@@ -1,8 +1,9 @@
 import { JsonView, defaultStyles } from 'react-json-view-lite';
 import 'react-json-view-lite/dist/index.css';
-import { listings } from '../seed/listings';
+import { useStore } from '../store/useStore';
 
 export function AgentFeed() {
+  const listings = useStore((state) => state.listings);
   const publicListings = listings.map(({ id, category, description, price, seller }) => ({
     id,
     category,

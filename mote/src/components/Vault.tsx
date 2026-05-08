@@ -19,7 +19,9 @@ export function Vault() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {fragments.map((f) => (
-          <FragmentCard key={f.id} fragment={f} />
+          <Link key={f.id} to={f.status === 'Draft' ? `/vault/edit/${f.id}` : '#'}>
+            <FragmentCard fragment={f} />
+          </Link>
         ))}
       </div>
     </div>

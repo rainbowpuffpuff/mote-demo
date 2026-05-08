@@ -1,9 +1,9 @@
 import { useParams, Link } from 'react-router-dom';
-import { listings } from '../seed/listings';
 import { useStore } from '../store/useStore';
 
 export function LibraryDetail() {
   const { id } = useParams();
+  const listings = useStore((state) => state.listings);
   const listing = listings.find((l) => l.id === id);
   const isPurchased = useStore((state) => state.purchasedListings.includes(id || ''));
 

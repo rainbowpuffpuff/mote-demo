@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
-import { listings } from '../seed/listings';
+import { useStore } from '../store/useStore';
 
 export function Market() {
-  const categories = ['DeFi alpha', 'Personal finance', 'Productivity', 'Health', 'Relationships', 'Career'];
+  const categories = ['DeFi alpha', 'Yield farming', 'Productivity', 'Agent skills', 'Health', 'Career'];
+  const listings = useStore((state) => state.listings);
 
   return (
     <div className="max-w-5xl mx-auto py-8">

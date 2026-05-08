@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useStore } from '../store/useStore';
-import { listings } from '../seed/listings';
 import { Unlock } from 'lucide-react';
 
 export function Library() {
   const purchasedListingsIds = useStore((state) => state.purchasedListings);
+  const listings = useStore((state) => state.listings);
   
   const purchasedListings = purchasedListingsIds.map(id => listings.find(l => l.id === id)).filter(Boolean);
 
