@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Sparkles, Check, ChevronRight } from 'lucide-react';
 import { useStore } from '../store/useStore';
+import { analyzeFragmentLive } from '../lib/gemini';
 
 export function FragmentPublish() {
   const { id } = useParams();
@@ -12,51 +13,39 @@ export function FragmentPublish() {
   const [analyzing, setAnalyzing] = useState(true);
   const [selectedDesc, setSelectedDesc] = useState<number>(0);
   const [customPrice, setCustomPrice] = useState<number | string>('');
+  const [aiPrice, setAiPrice] = useState<number>(24);
   const [publishing, setPublishing] = useState(false);
+  const [liveDescriptions, setLiveDescriptions] = useState<{tone: string, text: string}[]>([]);
 
   useEffect(() => {
-    // Simulate Gemini 3.1 Flash Lite analysis taking 3 seconds
-    const timer = setTimeout(() => {
+    if (fragment?.content) {
+      analyzeFragmentLive(fragment.content).then(result => {
+        setLiveDescriptions(result.descriptions);
+        setCustomPrice(result.price);
+        setAiPrice(result.price);
+        setAnalyzing(false);
+      });
+    } else {
       setAnalyzing(false);
-      setCustomPrice(24); // Suggested price
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
+    }
+  }, [fragment]);
 
   if (!fragment) return <div className="p-8">Fragment not found.</div>;
-
-  const wordCount = fragment.content.split(/\s+/).filter(Boolean).length;
-
-  const extractTopic = (text: string) => {
-    const words = text.toLowerCase().replace(/[^a-z0-9\s]/g, '').split(/\s+/);
-    const stopWords = new Set(['the', 'and', 'to', 'of', 'in', 'is', 'that', 'it', 'on', 'you', 'this', 'for', 'but', 'with', 'are', 'have', 'from', 'these', 'those', 'then', 'very', 'which', 'their', 'there']);
-    const meaningfulWords = words.filter(w => w.length > 4 && !stopWords.has(w));
-    if (meaningfulWords.length === 0) return 'specific operational methods';
-    return meaningfulWords.slice(0, 3).join(' ');
-  };
-
-  const topicPhrase = extractTopic(fragment.content);
-
-  const mockDescriptions = [
-    { tone: 'Objective', text: `A ${wordCount}-word text outlining procedures related to ${topicPhrase}.` },
-    { tone: 'Structural', text: `An informal set of notes detailing requirements and expected outcomes for ${topicPhrase}.` },
-    { tone: 'Empirical', text: `A user claim regarding a specific configuration path involving ${topicPhrase}.` }
-  ];
 
   const handlePublish = () => {
     setPublishing(true);
     setTimeout(() => {
       // Update fragment status
-      updateFragment(fragment.id, { status: 'Listed', price: Number(customPrice) || 24 });
+      updateFragment(fragment.id, { status: 'Listed', price: Number(customPrice) || aiPrice });
       
       // Add to marketplace listings
       addListing({
         id: fragment.id, // For demo, using same ID
         category: 'Agent skills', // Auto-categorized as Agent skills for this demo flow
         title: fragment.title,
-        description: mockDescriptions[selectedDesc].text,
-        price: Number(customPrice) || 24,
-        aiPrice: 24, // Assuming the AI generated price is statically 24 for this demo
+        description: liveDescriptions[selectedDesc]?.text || "Description pending",
+        price: Number(customPrice) || aiPrice,
+        aiPrice: aiPrice,
         seller: '0xSash...4a',
         createdAt: new Date().toISOString(),
       });
@@ -93,7 +82,7 @@ export function FragmentPublish() {
               <p className="text-sm text-gray-600 mb-4 leading-relaxed">Gemini generated these descriptions based on your content. The raw text remains encrypted and never leaves your device.</p>
               
               <div className="space-y-3">
-                {mockDescriptions.map((desc, idx) => (
+                {liveDescriptions.map((desc, idx) => (
                   <div 
                     key={idx}
                     onClick={() => setSelectedDesc(idx)}
