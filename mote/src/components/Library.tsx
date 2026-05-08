@@ -1,18 +1,16 @@
 import { Link } from 'react-router-dom';
 import { useStore } from '../store/useStore';
 import { Unlock, PenTool } from 'lucide-react';
-
 export function Library() {
-  const purchasedListingsIds = useStore((state) => state.purchasedListings);
+  const purchasedListingsMap = useStore((state) => state.purchasedListings);
   const listings = useStore((state) => state.listings);
   const fragments = useStore((state) => state.fragments);
   const activePersona = useStore((state) => state.activePersona);
-  
+
+  const purchasedListingsIds = purchasedListingsMap[activePersona] || [];
   const purchasedListings = purchasedListingsIds.map(id => listings.find(l => l.id === id)).filter(Boolean);
-  
-  // In a real app, fragments would have an owner. For the demo:
-  // Sasha owns the initial fragments. Others only see what they bought.
-  const authoredFragments = activePersona === 'Sasha' ? fragments : [];
+
+  const authoredFragments = fragments.filter(f => f.author === activePersona);
 
   const hasContent = purchasedListings.length > 0 || authoredFragments.length > 0;
 

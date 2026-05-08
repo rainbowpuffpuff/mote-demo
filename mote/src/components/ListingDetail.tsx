@@ -54,7 +54,7 @@ export function ListingDetail() {
         setTimeout(() => {
           setBuyState('decrypting');
           setTimeout(() => {
-            purchaseListing(listing.id);
+            purchaseListing(activePersona, listing.id);
             navigate(`/library/${listing.id}`);
           }, 600);
         }, 1200);

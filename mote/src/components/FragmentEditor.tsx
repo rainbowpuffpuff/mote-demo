@@ -22,6 +22,8 @@ export function FragmentEditor() {
     }
   }, [existingFragment]);
 
+  const activePersona = useStore((state) => state.activePersona);
+
   const handleSaveDraft = () => {
     if (existingFragment) {
       updateFragment(existingFragment.id, { title, content });
@@ -30,6 +32,7 @@ export function FragmentEditor() {
       const newId = `frag_${Date.now()}`;
       addFragment({
         id: newId,
+        author: activePersona,
         title: title || 'Untitled Fragment',
         content,
         status: 'Draft',
@@ -46,6 +49,7 @@ export function FragmentEditor() {
       targetId = `frag_${Date.now()}`;
       addFragment({
         id: targetId,
+        author: activePersona,
         title: title || 'Untitled Fragment',
         content,
         status: 'Draft',

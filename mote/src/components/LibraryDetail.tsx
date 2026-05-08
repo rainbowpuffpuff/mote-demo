@@ -4,8 +4,11 @@ import { useStore } from '../store/useStore';
 export function LibraryDetail() {
   const { id } = useParams();
   const listings = useStore((state) => state.listings);
+  const activePersona = useStore((state) => state.activePersona);
+  const purchasedListingsMap = useStore((state) => state.purchasedListings);
+  
   const listing = listings.find((l) => l.id === id);
-  const isPurchased = useStore((state) => state.purchasedListings.includes(id || ''));
+  const isPurchased = (purchasedListingsMap[activePersona] || []).includes(id || '');
 
   if (!listing || !isPurchased) {
     return <div className="max-w-2xl mx-auto py-8">Listing not found or not purchased.</div>;
